@@ -8,6 +8,9 @@ import os
 import re
 import string
 
+### Plot t-SNE embeddings for reference and trypanosome datasets, interactively with Dash
+### Allows for lasso selection of points to see word frequencies below
+
 # Helper functions
 
 def load_txt_list(filename):

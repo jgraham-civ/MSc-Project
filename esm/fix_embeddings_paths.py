@@ -1,6 +1,11 @@
 import os
 import shutil
 
+### VS Code will create subdirectories where it finds "/" in FASTA headers
+### This script will correct for this by flattening the embeddings into a single directory
+
+
+# Earlier version of the script that didn't work as expected (would only work for 1 level of nesting) #
 def flatten_esm_pt_files(source_dir, output_dir):
     os.makedirs(output_dir, exist_ok=True)
 
@@ -30,6 +35,7 @@ def flatten_esm_pt_files(source_dir, output_dir):
             else:
                 print(f"Skipped directory (not exactly 1 .pt file): {full_path}")
 
+# New function that works for all levels of nesting #
 
 def flatten_esm_pt_files_recursive(source_dir, output_dir):
     os.makedirs(output_dir, exist_ok=True)

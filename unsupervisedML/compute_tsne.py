@@ -7,6 +7,8 @@ from sklearn.manifold import trustworthiness
 from pathlib import Path
 from collections import Counter
 
+### Compute t-SNE embeddings for reference and trypanosome datasets
+
 def find_pt_files(root_dir):
     """Find all .pt files, handling split filenames correctly"""
     root_dir = os.path.expandvars(root_dir)
@@ -169,7 +171,7 @@ if __name__ == "__main__":
             all_descriptions = ref_descriptions + tryp_descriptions
             group_labels = np.array(['reference'] * len(ref_embeddings) + ['trypanosome'] * len(tryp_embeddings))
 
-            for perplexity in [30, 90]:
+            for perplexity in [30, 90]: # Choose perplexity values
                 tsne_result = run_tsne(combined_embeddings, perplexity)
                 np.save(output_dir / f"tsne_coords_{tier}_perp{perplexity}.npy", tsne_result)
                 with open(output_dir / f"protein_ids_{tier}.txt", 'w') as f:
@@ -181,7 +183,7 @@ if __name__ == "__main__":
                 np.save(output_dir / f"labels_{tier}.npy", group_labels)
 
                 trust_scores = []
-                neighbors_range = list(range(5, 51, 5))
+                neighbors_range = list(range(5, 51, 5)) # Choose number of neighbors for trustworthiness calculation
                 for n in neighbors_range:
                     trust = trustworthiness(combined_embeddings, tsne_result, n_neighbors=n)
                     trust_scores.append(trust)

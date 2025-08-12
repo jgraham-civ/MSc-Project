@@ -4,6 +4,8 @@ from pathlib import Path
 import plotly.graph_objects as go
 from collections import Counter
 
+### Plot t-SNE embeddings for reference and trypanosome datasets, interactively with Plotly
+
 def load_txt_list(filename):
     with open(filename, 'r') as f:
         return [line.strip() for line in f]

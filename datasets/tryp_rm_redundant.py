@@ -1,6 +1,8 @@
 from Bio import SeqIO
 import os
 
+### Remove redundant (identical)sequences from a FASTA file
+
 def remove_redundant(input_file, output_file):
     input_file = os.path.expandvars(input_file)
     total_records = 0

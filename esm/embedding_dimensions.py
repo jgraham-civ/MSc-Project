@@ -2,6 +2,8 @@ import os
 import torch
 import numpy as np
 
+### Compute the dimensions of the ESM embeddings
+
 def find_pt_files(root_dir):
     root_dir = os.path.expandvars(root_dir)
     pt_files = []
